@@ -51,7 +51,7 @@ const AddUser = () => {
   const addUserDetails = async () => {
     console.log(user);
     await addUser(user);
-    navigate("/");
+    navigate(-1);
   };
 
   return (
