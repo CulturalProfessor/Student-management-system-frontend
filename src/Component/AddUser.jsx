@@ -1,4 +1,4 @@
-import react, { useState } from "react";
+import react, { useState, useEffect } from "react";
 import {
   FormGroup,
   FormControl,
@@ -12,7 +12,7 @@ import { addUser } from "../Service/api";
 import { useNavigate } from "react-router-dom";
 
 const initialValue = {
-  id: "",
+  _id: "",
   firstName: "",
   middleName: "",
   lastName: "",
@@ -35,36 +35,22 @@ const Container = styled(FormGroup)`
 `;
 
 const AddUser = () => {
-  // const regex = {
-  //   class: "([1-9]|1[0-2])",
-  //   division: "([A-E])",
-  //   rollNumber: "([1-9][0-9])",
-  //   pincode: "([1-9][0-9][1-9][0-9][1-9][0-9])",
-  // };
-  const [user, setUser] = useState(initialValue);
+  let [user, setUser] = useState(initialValue);
   let navigate = useNavigate();
-  const [error, setError] = useState(false);
-  const [errorMessage,setErrorMessage]=useState('')
+
+  useEffect(() => {
+    let id = Math.random().toPrecision(5) * 100000;
+    setUser({ ...user, _id: id });
+  }, []);
 
   const onValueChange = (e) => {
-    // if (e.target.name == ("class" || "division" || "rollNumber" || "pincode")) {
-    //   if (regex.e.target.name.test(e.target.value)) {
-    //     setError(false);
-    //   } else {
-    //     setError(true);
-    //   }
-    // }
-    
     setUser({ ...user, [e.target.name]: e.target.value });
-    let id = Math.ceil(Math.random().toPrecision(7)*10000000);
-  
-    setUser({ ...user, id: id });
     console.log(user);
   };
 
   const addUserDetails = async () => {
-    await addUser(user);
     console.log(user);
+    await addUser(user);
     navigate("/");
   };
 
@@ -98,9 +84,7 @@ const AddUser = () => {
       <FormControl>
         <InputLabel htmlFor="my-input">Class only 1-12</InputLabel>
         <Input
-          onChange={(e) =>
-            onValueChange(e)
-          }
+          onChange={(e) => onValueChange(e)}
           name="class"
           id="my-input"
           helperText={
@@ -126,9 +110,7 @@ const AddUser = () => {
           name="rollNumber"
           id="my-input"
           helperText={
-            error
-              ? setErrorMessage("RollNumber should be only two digits")
-              : ""
+            error ? setErrorMessage("RollNumber should be only two digits") : ""
           }
         />
       </FormControl>
@@ -167,9 +149,7 @@ const AddUser = () => {
           name="pincode"
           id="my-input"
           helperText={
-            error
-              ? setErrorMessage("RollNumber should be only six digits")
-              : ""
+            error ? setErrorMessage("RollNumber should be only six digits") : ""
           }
         />
       </FormControl>
