@@ -12,7 +12,7 @@ function App() {
       <NavBar />
       <Routes>
         {/* <Route path="/" element={<CodeForInterview />} /> */}
-        <Route path="/" element={<AllUsers />} />
+        <Route path="/" exact element={<AllUsers />} />
         <Route path="/add" element={<AddUser />} />
         <Route path="/edit/:id" element={<EditUser />} />
         <Route element={<NotFound />} />
