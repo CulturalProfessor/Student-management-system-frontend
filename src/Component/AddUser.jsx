@@ -83,14 +83,7 @@ const AddUser = () => {
       </FormControl>{" "}
       <FormControl>
         <InputLabel htmlFor="my-input">Class only 1-12</InputLabel>
-        <Input
-          onChange={(e) => onValueChange(e)}
-          name="class"
-          id="my-input"
-          helperText={
-            error ? setErrorMessage("Classes should be only from 1 to 12") : ""
-          }
-        />
+        <Input onChange={(e) => onValueChange(e)} name="class" id="my-input" />
       </FormControl>{" "}
       <FormControl>
         <InputLabel htmlFor="my-input">Division only A-E</InputLabel>
@@ -98,9 +91,6 @@ const AddUser = () => {
           onChange={(e) => onValueChange(e)}
           name="division"
           id="my-input"
-          helperText={
-            error ? setErrorMessage("Division should be only from A to E") : ""
-          }
         />
       </FormControl>
       <FormControl>
@@ -109,9 +99,6 @@ const AddUser = () => {
           onChange={(e) => onValueChange(e)}
           name="rollNumber"
           id="my-input"
-          helperText={
-            error ? setErrorMessage("RollNumber should be only two digits") : ""
-          }
         />
       </FormControl>
       <FormControl>
@@ -148,9 +135,6 @@ const AddUser = () => {
           onChange={(e) => onValueChange(e)}
           name="pincode"
           id="my-input"
-          helperText={
-            error ? setErrorMessage("RollNumber should be only six digits") : ""
-          }
         />
       </FormControl>
       <FormControl>
